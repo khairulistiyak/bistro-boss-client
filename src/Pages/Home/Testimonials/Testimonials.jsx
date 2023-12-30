@@ -9,7 +9,7 @@ import "@smastrom/react-rating/style.css";
 
 const Testimonials = () => {
   const [reviews, setReviews] = useState([]);
-  console.log(reviews);
+
   useEffect(() => {
     const url = `reviews.json`;
     fetch(url)
@@ -23,9 +23,9 @@ const Testimonials = () => {
       </div>
       <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
         {reviews.map((review) => (
-          <SwiperSlide>
+          <SwiperSlide key={review._id}>
             <div className="flex justify-center  ">
-              <Rating className="max-w-52 mb-10" value={review.rating} readOnly />
+              <Rating className="max-w-32 mb-10" value={review.rating} readOnly />
             </div>
             <div className=" text-center px-16">
               <p className="text-xl ">{review.name}</p>

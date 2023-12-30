@@ -1,8 +1,6 @@
 import React from "react";
 
 const MenuItem = ({ item }) => {
-  console.log(item);
-
   const { name, price, image, category, recipe } = item;
   return (
     <div className="flex justify-between mx-5">
