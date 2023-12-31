@@ -2,8 +2,14 @@ import React from "react";
 import { Helmet } from "react-helmet-async";
 import Cover from "../../Shared/Cover/Cover";
 import menuImg from "../../assets/menu/banner3.jpg";
+import dessertImg from "../../assets/menu/dessert-bg.jpeg";
+import offerImg from "../../assets/menu/banner3.jpg";
+import soupImg from "../../assets/menu/soup-bg.jpg";
+import saladImg from "../../assets/menu/salad-bg.jpg";
+import pizzaImg from "../../assets/menu/pizza-bg.jpg";
 import useMenu from "../../hooks/useMenu";
 import SectionTitle from "../../components/SectionTitle/SectionTitle";
+import MenuCategory from "./MenuCategory/MenuCategory";
 
 const Menu = () => {
   const [menu] = useMenu();
@@ -18,10 +24,11 @@ const Menu = () => {
       <Helmet>
         <title>Bistro Boss | Menu</title>
       </Helmet>
-      <div>
-        <Cover img={menuImg} title={"OUR MENU"}></Cover>
-        <SectionTitle subHeading="Don't  miss " heading="Tody offer"></SectionTitle>
-      </div>
+      <MenuCategory items={offered} title={" TODY OFFER "} heading="TODY OFFER" subHeading="Don't Miss" img={offerImg}></MenuCategory>
+      <MenuCategory items={dessert} title={"dessert"} img={dessertImg} heading="Dessert" subHeading="Don't Miss"></MenuCategory>
+      <MenuCategory items={soup} title={"soup"} img={soupImg} heading="soup" subHeading="Don't Miss"></MenuCategory>
+      <MenuCategory items={salad} title={"salad"} img={saladImg} heading="salad" subHeading="Don't Miss"></MenuCategory>
+      <MenuCategory items={pizza} title={"pizza"} img={pizzaImg} heading="pizza" subHeading="Don't Miss"></MenuCategory>
     </div>
   );
 };
