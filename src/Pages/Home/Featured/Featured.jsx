@@ -2,6 +2,7 @@ import React from "react";
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import featuredImg from "../../../assets/home/featured.jpg";
 import "./Featured.css";
+import { Link } from "react-router-dom";
 
 const Featured = () => {
   return (
@@ -18,7 +19,9 @@ const Featured = () => {
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat ipsum libero eligendi amet a dolorem porro similique cupiditate, labore
             harum reiciendis laboriosam odit magnam quasi in, quaerat quae eveniet voluptate.
           </p>
-          <button className="btn bg-yellow-400 mt-5"> Order Now</button>
+          <Link to="/menu">
+            <button className="btn bg-yellow-400 mt-5"> Order Now</button>
+          </Link>
         </div>
       </div>
     </div>
