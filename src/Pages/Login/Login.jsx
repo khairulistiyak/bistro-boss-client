@@ -1,7 +1,10 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from "react-simple-captcha";
+import { AuthContext } from "../../providers/AuthProvider";
+import { Link } from "react-router-dom";
 
 const Login = () => {
+  const { createUser } = useContext(AuthContext);
   const captchaRef = useRef(null);
   const [disabled, setDisabled] = useState(true);
   const handleLogin = (event) => {
@@ -9,8 +12,12 @@ const Login = () => {
     const form = event.target;
     const email = form.email.value;
     const password = form.password.value;
-    const loginInfo = { email, password };
-    // console.log(loginInfo);
+
+    createUser(email, password)
+      .then((result) => console.log(result.user))
+      .catch((error) => {
+        console.log(error.message);
+      });
   };
 
   useEffect(() => {
@@ -72,6 +79,16 @@ const Login = () => {
                   Login
                 </button>
               </div>
+              <p>
+                <div className="text-center">
+                  <small>
+                    New here?{" "}
+                    <Link to={"/signUp"} className="font-semibold text-yellow-600">
+                      Create a New Account
+                    </Link>
+                  </small>
+                </div>
+              </p>
             </form>
           </div>
         </div>
