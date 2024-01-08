@@ -7,6 +7,7 @@ import { Pagination } from "swiper/modules";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
+// TODO:  do implement pagination here on this page ?
 
 const OrderTab = ({ items }) => {
   const pagination = {

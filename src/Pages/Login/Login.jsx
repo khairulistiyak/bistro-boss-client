@@ -20,27 +20,26 @@ const Login = () => {
 
     signIn(email, password)
       .then((result) => {
-        const loggedUSer = result.user;
-        Swal.fire({
-          title: "successfully Login",
-          showClass: {
-            popup: `
+        if (result.user) {
+          Swal.fire({
+            title: "successfully Login",
+            showClass: {
+              popup: `
               animate__animated
               animate__fadeInUp
               animate__faster
             `,
-          },
-          hideClass: {
-            popup: `
+            },
+            hideClass: {
+              popup: `
               animate__animated
               animate__fadeOutDown
               animate__faster
             `,
-          },
-        });
+            },
+          });
+        }
         naviGate(from, { replace: true });
-
-        console.log(loggedUSer);
       })
       .catch();
   };
@@ -94,19 +93,18 @@ const Login = () => {
                 <label className="label">
                   <LoadCanvasTemplate></LoadCanvasTemplate>
                 </label>
+                {/*TODO: captcha required */}
                 <input
                   onBlur={handleValidateCaptcha}
                   name="captcha"
                   type="text"
                   placeholder="Type the text about "
                   className="input input-bordered"
-                  required
                 />
               </div>
-              <div className="form-control mt-3">
-                <button disabled={disabled} className="btn  btn-primary">
-                  Login
-                </button>
+              {/*TODO: make button disable add--- false remove   */}
+              <div className="">
+                <input className="btn w-full btn-primary" disabled={false} type="submit" value="Login" />
               </div>
 
               <div className="text-center">
