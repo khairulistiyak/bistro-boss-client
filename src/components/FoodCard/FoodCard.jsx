@@ -3,25 +3,33 @@ import { AuthContext } from "../../providers/AuthProvider";
 
 import { useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import useCart from "../../hooks/useCart";
 
 const FoodCard = ({ item }) => {
-  const { name, price, image, recipe } = item;
+  const { name, price, image, recipe, _id } = item;
   const { user } = useContext(AuthContext);
-  // console.log(user);
+  const [, refetch] = useCart();
   const navigate = useNavigate();
   const location = useLocation();
 
   const handleAddToCart = (item) => {
     console.log(item);
-    if (user) {
-      fetch("http://localhost:5000//carts")
+    if (user && user.email) {
+      const cartItem = { menuItemID: _id, name, image, price, email: user.email };
+
+      fetch("http://localhost:5000/carts", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(cartItem),
+      })
         .then((res) => res.json())
         .then((data) => {
           if (data.insertedId) {
+            refetch(); // refetch carts to update  the number of item in the cart
             Swal.fire({
-              position: "top-end",
+              position: "center",
               icon: "success",
-              title: "Your work has been saved",
+              title: "Food added on the cart",
               showConfirmButton: false,
               timer: 1500,
             });
@@ -29,13 +37,12 @@ const FoodCard = ({ item }) => {
         });
     } else {
       Swal.fire({
-        title: "Are you sure?",
-        text: "You won't be able to revert this!",
+        title: "Please login to order the food",
         icon: "warning",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
-        confirmButtonText: "Yes, delete it!",
+        confirmButtonText: "Login",
       }).then((result) => {
         if (result.isConfirmed) {
           navigate("/login", { state: { from: location } });

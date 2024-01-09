@@ -2,10 +2,11 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import { FaCartArrowDown } from "react-icons/fa";
+import useCart from "../../hooks/useCart";
 
 const NavBar = () => {
   const { user, logOut } = useContext(AuthContext);
-  console.log(user);
+  const [cart] = useCart();
   const handleLogOut = () => {
     logOut().then().catch();
   };
@@ -34,7 +35,7 @@ const NavBar = () => {
           <button class="flex items-center">
             <FaCartArrowDown className="text-2xl me-2" />
 
-            <div class="badge badge-secondary">+99</div>
+            <div class="badge badge-secondary">{cart?.length || 0}</div>
           </button>
         </Link>
       </li>
