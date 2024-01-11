@@ -31,7 +31,7 @@ const NavBar = () => {
         <Link to="/test">test</Link>
       </li>
       <li>
-        <Link>
+        <Link to={"/dashboard/myCart"}>
           <button class="flex items-center">
             <FaCartArrowDown className="text-2xl me-2" />
 
