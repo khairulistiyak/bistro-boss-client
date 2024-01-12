@@ -11,6 +11,7 @@ import PrivateRoute from "./PrivateRoute";
 import Test from "../components/Test/Test";
 import Dashboard from "../Layout/Dashboard";
 import MyCart from "../Pages/Dashboard/MyCart/MyCart";
+import History from "../Pages/Dashboard/History/history";
 
 const router = createBrowserRouter([
   {
@@ -62,6 +63,10 @@ const router = createBrowserRouter([
       {
         path: "myCart",
         element: <MyCart></MyCart>,
+      },
+      {
+        path: "history",
+        element: <History></History>,
       },
     ],
   },

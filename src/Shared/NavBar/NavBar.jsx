@@ -35,7 +35,7 @@ const NavBar = () => {
           <button class="flex items-center">
             <FaCartArrowDown className="text-2xl me-2" />
 
-            <div class="badge badge-secondary">{cart?.length || 0}</div>
+            <div class="badge badge-secondary">+{cart?.length || 0}</div>
           </button>
         </Link>
       </li>
