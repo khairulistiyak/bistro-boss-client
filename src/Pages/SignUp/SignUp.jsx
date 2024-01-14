@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import { VscEye, VscEyeClosed } from "react-icons/vsc";
 import Swal from "sweetalert2";
+import SocialLogin from "../../Shared/SocialLogin/SocialLogin";
 
 const SignUp = () => {
   const [showToggled, setShowToggled] = useState(false);
@@ -11,7 +12,6 @@ const SignUp = () => {
   const { createUser, updateUserProfile } = useContext(AuthContext);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
-  // console.log(createUser);
 
   const {
     register,
@@ -22,40 +22,42 @@ const SignUp = () => {
   } = useForm();
   // -----------------------------------------
   // -----------------------------------------
-
   // -----------------------------------------
   // -----------------------------------------
   const onSubmit = (data) => {
-    console.log(data.displayName);
     createUser(data.email, data.password)
       .then((result) => {
         const loggedUSer = result.user;
         updateUserProfile(data.displayName, data.photoURl)
           .then(() => {
-            console.log("user Profile info update");
-            // reset();
-            Swal.fire({
-              position: "center",
-              icon: "success",
-              title: "Your work has been saved",
-              showConfirmButton: false,
-              timer: 1500,
-            });
+            const saveUser = { name: data.displayName, email: data.email };
+            fetch("http://localhost:5000/users", {
+              method: "POST",
+              headers: { "content-type": "application/json" },
+              body: JSON.stringify(saveUser),
+            })
+              .then((res) => res.json())
+              .then((data) => {
+                reset();
+                Swal.fire({
+                  position: "center",
+                  icon: "success",
+                  title: "Your work has been saved",
+                  showConfirmButton: false,
+                  timer: 1500,
+                });
+              });
           })
-          .catch((error) => {
-            console.log(error.message);
-          });
-        // navigate("/");
+          .catch((error) => {});
+        navigate("/");
       })
 
       .catch((error) => {
-        console.log(error);
         if (error.message == "Firebase: Error (auth/email-already-in-use).") {
           setError("This email already use");
         }
       });
   };
-  // console.log(watch("example"));
   // -----------------------------------------
   // -----------------------------------------
   const handleShow = () => {
@@ -173,6 +175,9 @@ const SignUp = () => {
                 </div>
               </p>
             </form>
+            <div>
+              <SocialLogin></SocialLogin>
+            </div>
           </div>
         </div>
       </div>

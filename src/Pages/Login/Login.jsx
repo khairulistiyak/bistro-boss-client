@@ -4,13 +4,13 @@ import { AuthContext } from "../../providers/AuthProvider";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import "animate.css";
+import SocialLogin from "../../Shared/SocialLogin/SocialLogin";
 
 const Login = () => {
   const { signIn, user } = useContext(AuthContext);
   const [disabled, setDisabled] = useState(true);
   const naviGate = useNavigate();
   const location = useLocation();
-  console.log(location);
   const from = location?.state?.from?.pathname || "/";
   const handleLogin = (event) => {
     event.preventDefault();
@@ -50,7 +50,7 @@ const Login = () => {
 
   const handleValidateCaptcha = (e) => {
     const userCaptchaValue = e.target.value;
-    console.log(userCaptchaValue);
+
     if (validateCaptcha(userCaptchaValue)) {
       setDisabled(false);
     } else {
@@ -116,6 +116,7 @@ const Login = () => {
                 </small>
               </div>
             </form>
+            <SocialLogin></SocialLogin>
           </div>
         </div>
       </div>
