@@ -1,6 +1,20 @@
 import React from "react";
 import { NavLink, Outlet } from "react-router-dom";
-import { FaCartArrowDown, FaWallet, FaCalendarAlt, FaHome, FaUserMinus, FaShapes, FaUtensils } from "react-icons/fa";
+import {
+  FaCartArrowDown,
+  FaWallet,
+  FaCalendarAlt,
+  FaHome,
+  FaUserMinus,
+  FaShapes,
+  FaUtensils,
+  FaHamburger,
+  FaHammer,
+  FaList,
+  FaBookReader,
+  FaBook,
+  FaUsers,
+} from "react-icons/fa";
 
 import useCart from "../hooks/useCart";
 
@@ -37,15 +51,17 @@ const Dashboard = () => {
               </li>
               <li>
                 <NavLink to="/dashboard/history">
-                  <FaWallet></FaWallet> Payment History
+                  <FaList></FaList> Mange Items
                 </NavLink>
               </li>
-              <li className="inline">
-                <NavLink to="/dashboard/myCart">
-                  <FaCartArrowDown></FaCartArrowDown>{" "}
-                  <span>
-                    My Carts <small className="badge badge-secondary ms-3"> + {cart?.length || 0}</small>
-                  </span>
+              <li>
+                <NavLink to="/dashboard/booking">
+                  <FaBook></FaBook> Mange Booking
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/allUsers">
+                  <FaUsers></FaUsers> All Users
                 </NavLink>
               </li>
             </>
