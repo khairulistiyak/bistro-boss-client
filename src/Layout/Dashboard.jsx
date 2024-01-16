@@ -34,7 +34,7 @@ const Dashboard = () => {
       </div>
       <div className="drawer-side">
         <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
-        <ul className="menu p-4 w-80 min-h-full bg-[#D1A054]">
+        <ul className="menu p-4 w-0 min-h-full bg-[#D1A054]">
           {/* Sidebar content here */}
 
           {isAdmin ? (

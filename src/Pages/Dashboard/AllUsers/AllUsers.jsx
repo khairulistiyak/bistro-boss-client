@@ -25,7 +25,7 @@ const AllUsers = () => {
             icon: "success",
             title: `${user.displayName} is an admin now`,
             showConfirmButton: false,
-            timer: 3500,
+            timer: 1500,
           });
         }
         refetch();
