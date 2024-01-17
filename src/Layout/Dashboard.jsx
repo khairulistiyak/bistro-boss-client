@@ -1,20 +1,6 @@
 import React from "react";
 import { NavLink, Outlet } from "react-router-dom";
-import {
-  FaCartArrowDown,
-  FaWallet,
-  FaCalendarAlt,
-  FaHome,
-  FaUserMinus,
-  FaShapes,
-  FaUtensils,
-  FaHamburger,
-  FaHammer,
-  FaList,
-  FaBookReader,
-  FaBook,
-  FaUsers,
-} from "react-icons/fa";
+import { FaCartArrowDown, FaWallet, FaCalendarAlt, FaHome, FaShapes, FaUtensils, FaList, FaBook, FaUsers } from "react-icons/fa";
 
 import useCart from "../hooks/useCart";
 
