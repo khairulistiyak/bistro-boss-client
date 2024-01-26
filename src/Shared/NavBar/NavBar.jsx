@@ -3,9 +3,10 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import { FaCartArrowDown } from "react-icons/fa";
 import useCart from "../../hooks/useCart";
+import useAuth from "../../hooks/useAuth";
 
 const NavBar = () => {
-  const { user, logOut } = useContext(AuthContext);
+  const { user, logOut } = useAuth();
   const [cart] = useCart();
   const handleLogOut = () => {
     logOut().then().catch();

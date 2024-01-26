@@ -4,9 +4,10 @@ import { FcGoogle } from "react-icons/fc";
 import { AuthContext } from "../../providers/AuthProvider";
 import { useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import useAuth from "../../hooks/useAuth";
 
 const SocialLogin = () => {
-  const { googleSignIn } = useContext(AuthContext);
+  const { googleSignIn } = useAuth();
   const location = useLocation();
   const naviGate = useNavigate();
 

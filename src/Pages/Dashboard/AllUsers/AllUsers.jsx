@@ -33,51 +33,47 @@ const AllUsers = () => {
   };
 
   const handleDelete = () => {};
+
   return (
-    <div>
+    <div className="overflow-x-auto">
       <div className="text-3xl font-semibold uppercase flex items-center gap-5 my-10">
         <FaUsers></FaUsers> Total users| {users.length}
       </div>
-      <div className="overflow-x-auto">
-        <table className="table table-zebra">
-          {/* head */}
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Role</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {/* row 1 */}
-            {users.map((user, index) => (
-              <tr key={user._id}>
-                <th>{index + 1}</th>
-                <td>{user.name}</td>
-                <td>{user.email}</td>
-                <td>
-                  {user.role == "admin" ? (
-                    "admin"
-                  ) : (
-                    <button className="btn bg-orange-500 text-white" onClick={() => handleMakeAdmin(user)}>
-                      <FaUserShield></FaUserShield>
-                    </button>
-                  )}
-                </td>
-                <td>
-                  <button className="btn bg-red-500" onClick={() => handleDelete()}>
-                    <FaTrashAlt className=" text-white "></FaTrashAlt>
+      <table className="min-w-full table-auto">
+        {/* head */}
+        <thead>
+          <tr>
+            <th className="w-1/6"> # </th>
+            <th className="w-1/6"> Name </th>
+            <th className="w-1/6"> Email </th>
+            <th className="w-1/6"> Role </th>
+            <th className="w-1/6"> Action </th>
+          </tr>
+        </thead>
+        <tbody>
+          {users.map((user, index) => (
+            <tr key={user._id}>
+              <td>{index + 1}</td>
+              <td>{user.name}</td>
+              <td>{user.email}</td>
+              <td>
+                {user.role === "admin" ? (
+                  "admin"
+                ) : (
+                  <button className="btn bg-orange-500 text-white" onClick={() => handleMakeAdmin(user)}>
+                    <FaUserShield></FaUserShield>
                   </button>
-                </td>
-              </tr>
-            ))}
-
-            {/* row 2 */}
-          </tbody>
-        </table>
-      </div>
+                )}
+              </td>
+              <td>
+                <button className="btn bg-red-500" onClick={() => handleDelete()}>
+                  <FaTrashAlt className=" text-white "></FaTrashAlt>
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };

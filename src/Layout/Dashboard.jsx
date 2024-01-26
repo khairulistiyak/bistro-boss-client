@@ -3,17 +3,23 @@ import { NavLink, Outlet } from "react-router-dom";
 import { FaCartArrowDown, FaWallet, FaCalendarAlt, FaHome, FaShapes, FaUtensils, FaList, FaBook, FaUsers } from "react-icons/fa";
 
 import useCart from "../hooks/useCart";
+import useAdmin from "../hooks/useAdmin";
 
 const Dashboard = () => {
   const [cart] = useCart();
   // TODO : LOAD DATA FROM SERVER TO HAVE DYNAMIC IS ADMIN BASED ON DATA
 
-  const isAdmin = true;
+  // const isAdmin = true;
+  const isAdmin = useAdmin();
+  console.log(isAdmin);
+
   return (
     <div className="drawer lg:drawer-open">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content flex flex-col items-center justify-center ">
-        <Outlet></Outlet>
+        <div className="mx-auto">
+          <Outlet></Outlet>
+        </div>
         <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">
           Open drawer
         </label>

@@ -4,9 +4,10 @@ import Header from "../Shared/Header/Header";
 import NavBar from "../Shared/NavBar/NavBar";
 import { useContext } from "react";
 import { AuthContext } from "../providers/AuthProvider";
+import useAuth from "../hooks/useAuth";
 
 const Main = () => {
-  const { loading } = useContext(AuthContext);
+  const { loading } = useAuth();
   const location = useLocation();
   const noHeaderFooter = location.pathname.includes("login") || location.pathname.includes("signUp") || loading;
   return (
