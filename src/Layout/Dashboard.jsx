@@ -10,7 +10,7 @@ const Dashboard = () => {
   // TODO : LOAD DATA FROM SERVER TO HAVE DYNAMIC IS ADMIN BASED ON DATA
 
   // const isAdmin = true;
-  const isAdmin = useAdmin();
+  const [isAdmin, isAdminLoading] = useAdmin();
   console.log(isAdmin);
 
   return (
