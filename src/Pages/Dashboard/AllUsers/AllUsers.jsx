@@ -2,13 +2,15 @@ import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import { FaTrashAlt, FaUserShield, FaUsers } from "react-icons/fa";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const AllUsers = () => {
+  const axiosSecure = useAxiosSecure();
   const { data: users = [], refetch } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/users");
-      return res.json();
+      const res = await axiosSecure.get("/users");
+      return res.data;
     },
   });
 
