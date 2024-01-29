@@ -9,7 +9,7 @@ import useAuth from "../hooks/useAuth";
 const Main = () => {
   const { loading } = useAuth();
   const location = useLocation();
-  const noHeaderFooter = location.pathname.includes("login") || location.pathname.includes("signUp") || loading;
+  const noHeaderFooter = location.pathname.includes("login") || location.pathname.includes("signUp");
   return (
     <div>
       {noHeaderFooter || <NavBar></NavBar>}
