@@ -4,6 +4,7 @@ import { FaCartArrowDown, FaWallet, FaCalendarAlt, FaHome, FaShapes, FaUtensils,
 
 import useCart from "../hooks/useCart";
 import useAdmin from "../hooks/useAdmin";
+import Spinner from "../components/Spinner/Spinner";
 
 const Dashboard = () => {
   const [cart] = useCart();
@@ -11,6 +12,13 @@ const Dashboard = () => {
 
   // const isAdmin = true;
   const [isAdmin, isAdminLoading] = useAdmin();
+  if (isAdminLoading) {
+    return <Spinner></Spinner>;
+  }
+
+  // Handle initial undefined value for isAdmin
+  const isAdminTrue = isAdmin && isAdmin[0];
+
   console.log(isAdmin);
 
   return (
@@ -37,8 +45,8 @@ const Dashboard = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/reservation">
-                  <FaUtensils></FaUtensils> Add Items
+                <NavLink to="/dashboard/addItem">
+                  <FaUtensils></FaUtensils> Add an Items
                 </NavLink>
               </li>
               <li>
