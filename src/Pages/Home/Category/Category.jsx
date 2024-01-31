@@ -18,7 +18,9 @@ import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 export default function App() {
   return (
     <>
-      <SectionTitle heading="ORDER ONLINE" subHeading="From 11:00am to 10:00pm"></SectionTitle>
+      <div>
+        <SectionTitle heading="ORDER ONLINE" subHeading="From 11:00am to 10:00pm"></SectionTitle>
+      </div>
       <Swiper
         slidesPerView={4}
         spaceBetween={30}

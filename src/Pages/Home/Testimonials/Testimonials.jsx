@@ -18,7 +18,7 @@ const Testimonials = () => {
   }, []);
   return (
     <>
-      <div>
+      <div className="mx-auto w-1/2">
         <SectionTitle subHeading={"What Our Clients Say"} heading={"TESTIMONIALS"}></SectionTitle>
       </div>
       <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
