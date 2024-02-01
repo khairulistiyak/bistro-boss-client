@@ -25,12 +25,13 @@ const Dashboard = () => {
     <div className="drawer lg:drawer-open">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content flex flex-col items-center  ">
-        <div className="mx-auto">
-          <Outlet></Outlet>
-        </div>
         <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">
           Open drawer
         </label>
+
+        <div className="mx-auto">
+          <Outlet></Outlet>
+        </div>
       </div>
       <div className="drawer-side">
         <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
@@ -50,7 +51,7 @@ const Dashboard = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/history">
+                <NavLink to="/dashboard/manageItems">
                   <FaList></FaList> Mange Items
                 </NavLink>
               </li>
