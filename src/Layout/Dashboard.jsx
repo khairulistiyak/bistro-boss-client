@@ -19,7 +19,7 @@ const Dashboard = () => {
   // Handle initial undefined value for isAdmin
   const isAdminTrue = isAdmin && isAdmin[0];
 
-  console.log(isAdmin);
+  // console.log(isAdmin);
 
   return (
     <div className="drawer lg:drawer-open">
