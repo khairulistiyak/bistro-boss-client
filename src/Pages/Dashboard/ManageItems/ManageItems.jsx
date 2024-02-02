@@ -1,12 +1,42 @@
 import React from "react";
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import useMenu from "../../../hooks/useMenu";
-import { FaEdit, FaTrashAlt } from "react-icons/fa";
+import { FaEdit, FaTrash, FaTrashAlt } from "react-icons/fa";
 import { MdEdit } from "react-icons/md";
+import Swal from "sweetalert2";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { data } from "autoprefixer";
 
 const ManageItems = () => {
-  const [menu] = useMenu();
-  console.log(menu);
+  const [menu, , refetch] = useMenu();
+  const axiosSecure = useAxiosSecure();
+
+  const handleDelete = (item) => {
+    console.log(item);
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure.delete(`/menu/${item._id}`).then((res) => {
+          if (res.data.deletedCount > 0) {
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your file has been deleted.",
+              icon: "success",
+            });
+            refetch();
+          }
+        });
+      }
+    });
+  };
+
   return (
     <div>
       <SectionTitle heading="Manage All Items" subHeading="hurry up"></SectionTitle>
@@ -19,7 +49,7 @@ const ManageItems = () => {
                 <label>#</label>
               </th>
               <th>Image</th>
-              <th> NAME</th>
+              <th>NAME</th>
               <th>Price</th>
               <th>ACTION</th>
               <th>ACTION</th>
@@ -42,15 +72,15 @@ const ManageItems = () => {
                   </div>
                 </td>
                 <td>{item.name}</td>
-                <td>${item.price}</td>
+                <td className="text-right">${item.price}</td>
                 <td>
                   <button className="btn btn-ghost  text-w text-xl">
                     <MdEdit></MdEdit>
                   </button>
                 </td>
                 <td>
-                  <button className="btn btn-ghost bg-red-500 text-white">
-                    <FaTrashAlt></FaTrashAlt>
+                  <button onClick={() => handleDelete(item)} className="btn btn-ghost btn-lg bg-red-500 text-white ">
+                    <FaTrash></FaTrash>
                   </button>
                 </td>
               </tr>
