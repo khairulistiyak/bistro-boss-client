@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@smastrom/react-rating": "^1.4.0",
+    "@stripe/react-stripe-js": "^2.4.0",
+    "@stripe/stripe-js": "^2.4.0",
     "@tanstack/react-query": "^5.17.9",
     "animate.css": "^4.1.1",
     "axios": "^1.6.5",
@@ -29,7 +31,7 @@
     "react-simple-captcha": "^9.3.1",
     "react-tabs": "^6.0.2",
     "sort-by": "^0.0.2",
-    "sweetalert2": "^11.10.2",
+    "sweetalert2": "^11.6.13",
     "swiper": "^11.0.5"
   },
   "devDependencies": {

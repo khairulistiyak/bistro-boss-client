@@ -63,7 +63,7 @@ const FoodCard = ({ item }) => {
         <h2 className="card-title">{name}</h2>
         <p>{recipe}</p>
         <div className="card-actions justify-end">
-          <button onClick={() => handleAddToCart(item)} className="btn bg-yellow-400 mt-3">
+          <button onClick={() => handleAddToCart(item)} className="btn btn-warning mt-3">
             Add to Cart
           </button>
         </div>

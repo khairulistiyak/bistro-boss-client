@@ -23,7 +23,7 @@ const Featured = () => {
               harum reiciendis laboriosam odit magnam quasi in, quaerat quae eveniet voluptate.
             </p>
             <Link to="/menu">
-              <button className="btn bg-yellow-400 mt-5"> Order Now</button>
+              <button className="btn btn-warning mt-5"> Order Now</button>
             </Link>
           </div>
         </div>

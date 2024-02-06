@@ -45,7 +45,7 @@ const MyCart = () => {
       <div className="font-semibold flex justify-evenly items-center uppercase">
         <h1 className="uppercase text-2xl">Total Cart {cart.length}</h1>
         <h1 className="uppercase text-2xl">Total Price {total}</h1>
-        <Link to="dashboard/payment">
+        <Link to="/dashboard/payment">
           <button className="btn btn-warning btn-sm  uppercase ">play</button>
         </Link>
       </div>

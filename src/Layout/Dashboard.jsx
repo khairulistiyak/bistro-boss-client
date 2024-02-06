@@ -29,7 +29,7 @@ const Dashboard = () => {
           Open drawer
         </label>
 
-        <div className="mx-auto">
+        <div className="w-full px-5">
           <Outlet></Outlet>
         </div>
       </div>
@@ -41,7 +41,7 @@ const Dashboard = () => {
           {isAdmin ? (
             <>
               <li className="">
-                <NavLink to="/dashboard/home">
+                <NavLink to="/dashboard/adminHome">
                   <FaHome></FaHome> Admin Home
                 </NavLink>
               </li>
