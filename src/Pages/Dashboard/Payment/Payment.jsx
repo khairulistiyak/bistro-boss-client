@@ -16,9 +16,7 @@ const Payment = () => {
       <Elements stripe={stripePromise}>
         <CheckOutForm />
       </Elements>
-      <div className="grid">
-        <button className="btn btn-primary my-10">Payment</button>
-      </div>
+      <div className="grid"></div>
     </div>
   );
 };
