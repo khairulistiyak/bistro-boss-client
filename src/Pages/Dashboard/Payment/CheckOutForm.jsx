@@ -12,8 +12,8 @@ const CheckOutForm = () => {
   const [error, setError] = useState([null]);
   const [clientSecret, setClientSecret] = useState("");
   const axiosSecure = useAxiosSecure();
-  const [card] = useCart();
-  const totalPrice = card.reduce((total, item) => total + item.price, 0);
+  const [cart] = useCart();
+  const totalPrice = cart.reduce((total, item) => total + item.price, 0);
   useEffect(() => {
     axiosSecure.post("create-payment-intent", { price: totalPrice }).then((res) => {
       console.log(res.data.clientSecret);
@@ -58,7 +58,18 @@ const CheckOutForm = () => {
       if (paymentIntent.status === "succeeded") {
         console.log("transaction id", paymentIntent.id);
         setTransactionId(paymentIntent.id);
-        // now payment the shave
+        // now payment the shave in the database
+        const payment = {
+          email: user?.email,
+          price: totalPrice,
+          transactionId: paymentIntent.id,
+          data: new Date(), // TODO : UTC DATE CONVERT MONET JAS DATE INCLUDED
+          cartIds: cart.map((item) => item._id),
+          menuItemIds: cart.map((item) => item.menuItemID),
+          status: "pending",
+        };
+        const res = await axiosSecure.post("/payments", payment);
+        console.log("payment intent", res.data);
       }
     }
   };
