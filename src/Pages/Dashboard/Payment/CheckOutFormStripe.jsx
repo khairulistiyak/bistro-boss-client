@@ -4,7 +4,7 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useCart from "../../../hooks/useCart";
 import useAuth from "../../../hooks/useAuth";
 
-const CheckOutForm = () => {
+const CheckOutFormStripe = () => {
   const { user } = useAuth();
   const [transactionId, setTransactionId] = useState("");
   const stripe = useStripe();
@@ -15,10 +15,12 @@ const CheckOutForm = () => {
   const [cart] = useCart();
   const totalPrice = cart.reduce((total, item) => total + item.price, 0);
   useEffect(() => {
-    axiosSecure.post("create-payment-intent", { price: totalPrice }).then((res) => {
-      console.log(res.data.clientSecret);
-      setClientSecret(res.data.clientSecret);
-    });
+    if (totalPrice > 0) {
+      axiosSecure.post("create-payment-intent", { price: totalPrice }).then((res) => {
+        console.log(res.data.clientSecret);
+        setClientSecret(res.data.clientSecret);
+      });
+    }
   }, []);
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -105,4 +107,4 @@ const CheckOutForm = () => {
   );
 };
 
-export default CheckOutForm;
+export default CheckOutFormStripe;

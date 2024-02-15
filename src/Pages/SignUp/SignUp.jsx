@@ -47,9 +47,9 @@ const SignUp = () => {
                   timer: 1500,
                 });
               });
+            navigate("/");
           })
           .catch((error) => {});
-        navigate("/");
       })
 
       .catch((error) => {
@@ -163,17 +163,16 @@ const SignUp = () => {
               <div className="form-control mt-6">
                 <button className="btn btn-primary">Sign Up</button>
               </div>
-              <p>
-                <div className="text-center">
-                  displayName
-                  <small>
-                    Already registered?{" "}
-                    <Link to={"/login"} className="font-semibold text-yellow-600">
-                      Go to log in
-                    </Link>
-                  </small>
-                </div>
-              </p>
+
+              <div className="text-center">
+                displayName
+                <small>
+                  Already registered?{" "}
+                  <Link to={"/login"} className="font-semibold text-yellow-600">
+                    Go to log in
+                  </Link>
+                </small>
+              </div>
             </form>
             <div>
               <SocialLogin></SocialLogin>

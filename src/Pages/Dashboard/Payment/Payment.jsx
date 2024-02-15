@@ -1,6 +1,6 @@
 import React from "react";
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
-import CheckOutForm from "./CheckOutForm";
+import CheckOutFormStripe from "./CheckOutFormStripe";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 
@@ -14,7 +14,7 @@ const Payment = () => {
         <SectionTitle heading={"PAYMENT"} subHeading={"Please provide"}></SectionTitle>
       </div>
       <Elements stripe={stripePromise}>
-        <CheckOutForm />
+        <CheckOutFormStripe />
       </Elements>
       <div className="grid"></div>
     </div>
