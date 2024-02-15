@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useCart from "../../../hooks/useCart";
 import useAuth from "../../../hooks/useAuth";
+import Swal from "sweetalert2";
 
 const CheckOutFormStripe = () => {
   const { user } = useAuth();
@@ -12,7 +13,7 @@ const CheckOutFormStripe = () => {
   const [error, setError] = useState([null]);
   const [clientSecret, setClientSecret] = useState("");
   const axiosSecure = useAxiosSecure();
-  const [cart] = useCart();
+  const [cart, refetch] = useCart();
   const totalPrice = cart.reduce((total, item) => total + item.price, 0);
   useEffect(() => {
     if (totalPrice > 0) {
@@ -71,7 +72,18 @@ const CheckOutFormStripe = () => {
           status: "pending",
         };
         const res = await axiosSecure.post("/payments", payment);
-        console.log("payment intent", res.data);
+        console.log("payment save", res.data.paymentResult.insertedId);
+        if (res?.data?.paymentResult?.insertedId) {
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Your work has been saved",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+
+        refetch();
       }
     }
   };

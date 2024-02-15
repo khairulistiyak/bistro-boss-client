@@ -79,13 +79,13 @@ const Dashboard = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/history">
+                <NavLink to="/dashboard/paymentHistory">
                   <FaWallet></FaWallet> Payment History
                 </NavLink>
               </li>
               <li className="inline">
                 <NavLink to="/dashboard/myCart">
-                  <FaCartArrowDown></FaCartArrowDown>{" "}
+                  <FaCartArrowDown></FaCartArrowDown>
                   <span>
                     My Carts <small className="badge badge-secondary ms-3"> + {cart?.length || 0}</small>
                   </span>
