@@ -1,11 +1,13 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { FaCartArrowDown } from "react-icons/fa";
 import useCart from "../../hooks/useCart";
 import useAuth from "../../hooks/useAuth";
+import useAdmin from "../../hooks/useAdmin";
 
 const NavBar = () => {
   const { user, logOut } = useAuth();
+  const [isAdmin] = useAdmin();
   const [cart] = useCart();
   const handleLogOut = () => {
     logOut().then().catch();
@@ -24,17 +26,20 @@ const NavBar = () => {
       <li>
         <Link to="/Contact">Contact</Link>
       </li>
-      <li>
-        <Link to="/secret">secret</Link>
-      </li>
-      <li>
-        <Link to="/test">test</Link>
-      </li>
+      {user && isAdmin && (
+        <li>
+          <Link to="/dashboard/adminHome">dashboard</Link>
+        </li>
+      )}
+      {user && !isAdmin && (
+        <li>
+          <Link to="/dashboard/userHome">dashboard</Link>
+        </li>
+      )}
       <li>
         <Link to={"/dashboard/myCart"}>
           <button className="flex items-center">
             <FaCartArrowDown className="text-2xl me-2" />
-
             <div className="badge badge-secondary">+{cart?.length || 0}</div>
           </button>
         </Link>

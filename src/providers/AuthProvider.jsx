@@ -54,9 +54,12 @@ const AuthProvider = ({ children }) => {
 
       // get and set token
       if (currentUser) {
-        axios.post("http://localhost:5000/jwt", { email: currentUser.email }).then((data) => {
+        const userInfo = { email: currentUser.email };
+        axios.post("http://localhost:5000/jwt", userInfo).then((res) => {
           // console.log(data.data);
-          localStorage.setItem("access-token", data.data.token);
+          if (res.data.token) {
+            localStorage.setItem("access-token", res.data.token);
+          }
           setLoading(false);
         });
       } else {
@@ -64,10 +67,24 @@ const AuthProvider = ({ children }) => {
         setLoading(false);
       }
     });
+
     return () => {
       return unsubscribe;
     };
   }, []);
+
+  // useEffect(() => {
+  //   const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+  //     setUser(currentUser);
+  //     if (currentUser) {
+  //       const userInfo = { email: currentUser.email };
+  //       axiosPub
+  //     }
+  //   });
+  //   return () => {
+  //     return unsubscribe;
+  //   };
+  // }, []);
 
   const authInfo = {
     user,
