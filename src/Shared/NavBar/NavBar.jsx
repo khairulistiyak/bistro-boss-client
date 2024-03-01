@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, Navigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { FaCartArrowDown } from "react-icons/fa";
 import useCart from "../../hooks/useCart";
 import useAuth from "../../hooks/useAuth";
@@ -7,8 +7,16 @@ import useAdmin from "../../hooks/useAdmin";
 
 const NavBar = () => {
   const { user, logOut } = useAuth();
-  const [isAdmin] = useAdmin();
+  const [isAdmin, isAdminLoading] = useAdmin();
+  const navigate = useNavigate();
   const [cart] = useCart();
+
+  // if (isAdminLoading) {
+  //   return navigate("/");
+  // }
+
+  console.log(cart);
+  // const isAdmin = true
   const handleLogOut = () => {
     logOut().then().catch();
   };
