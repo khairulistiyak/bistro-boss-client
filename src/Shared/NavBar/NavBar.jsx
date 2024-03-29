@@ -15,7 +15,7 @@ const NavBar = () => {
   //   return navigate("/");
   // }
 
-  console.log(cart);
+  // console.log(cart);
   // const isAdmin = true
   const handleLogOut = () => {
     logOut().then().catch();

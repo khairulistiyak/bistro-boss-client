@@ -12,6 +12,7 @@ const Dashboard = () => {
 
   // const isAdmin = true;
   const [isAdmin, isAdminLoading] = useAdmin();
+
   if (isAdminLoading) {
     return <Spinner></Spinner>;
   }
